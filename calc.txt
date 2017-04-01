@@ -1,0 +1,93 @@
+#include <iostream>
+#include <stdlib.h>
+#include <windows.h>
+#include <math.h>
+using namespace std;
+class calc
+{
+protected:
+	float f;
+	float s;
+	float r;
+public:
+	void vvod(){
+		cout << "Введите первое число" << endl;
+		cin >> f;
+		cout << "Введите второе число " << endl;
+		cin >> s;
+	}
+	void  plus(){r = f + s;}
+	void  minus(){r = f - s;}
+	void  umn(){ r = f * s; }
+	void  del(){r = f / s;}
+	void  vyvod(){cout << "Вывод " << r << endl;}
+};
+class dop :public calc
+{
+public:
+	void koren(){r = sqrt(r);}
+	void absol(){r = abs(r);}
+	void step(){r = r*r;}
+};
+int main(){
+	{ setlocale(LC_ALL, "Russian"); }
+	dop x;//объект
+	x.vvod();
+	int count;
+	retry:
+	cout << "Введите " << endl;
+	cout << "1 для сложения \n" << "2 для вычитание \n" << "3 для умножения \n" << "4 для деления \n";
+	cin >> count;
+	switch (count){
+	case 1:
+	{
+			  x.plus();
+			  x.vyvod();
+			  break;
+	}
+	case 2:{
+			   x.minus();
+			   x.vyvod();
+			   break;
+	}
+	case 3:{
+			   x.umn();
+			   x.vyvod();
+			   break;
+	}
+	case 4:{
+			   x.del();
+			   x.vyvod();
+			   break;
+	}
+	default:
+		cout << "Неправильный ввод" << endl;
+		goto retry;
+	};
+	retry2:
+	cout << "Введите " << endl;
+	cout << "1 для корня \n" << "2 для модуля \n" << "3 для возведения в квадрат \n";
+	cin >> count;
+	switch (count){
+	case 1:{
+			   x.koren();
+			   x.vyvod();
+			   break;
+	}
+	case 2:{
+			   x.absol();
+			   x.vyvod();
+			   break;
+	}
+	case 3:{
+			   x.step();
+			   x.vyvod();
+			   break;
+	}
+	default:
+		cout << "Неправильный ввод" << endl;
+		goto retry2;
+	};
+	system("pause");
+	return 0;
+}
